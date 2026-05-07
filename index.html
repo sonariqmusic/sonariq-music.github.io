@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zahraoui Prod - Music Distribution & Artist Rights Management">
+    <meta name="theme-color" content="#e50914">
+    <title>Zahraoui Prod | Music Distribution & Artist Rights</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-content">
+            <div class="logo" data-i18n="brand">Zahraoui Prod</div>
+            <button id="langBtn" class="lang-toggle" onclick="toggleLanguage()">العربية</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container hero-content">
+            <h1 data-i18n="heroTitle">We distribute your music. You stay creative.</h1>
+            <div class="btn-group">
+                <a href="#contact" class="btn btn-primary" data-i18n="submitMusic">Submit Music</a>
+                <a href="#artists" class="btn btn-secondary" data-i18n="viewArtists">View Artists</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title" data-i18n="aboutTitle">About Us</h2>
+            <div class="card fade-in">
+                <p data-i18n="aboutText" style="font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--text-dim);">
+                    Zahraoui Prod is a music distribution and rights management service working with selected artists under official agreements.
+                </p>
+                <p style="font-size: 1.3rem;">
+                    <strong data-i18n="rightsText" style="color: var(--primary-color); letter-spacing: 0.5px;">
+                        All rights remain 100% owned by the artist.
+                    </strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title" data-i18n="servicesTitle">Our Services</h2>
+            <div class="grid">
+                <div class="card fade-in">
+                    <h3 data-i18n="service1Title">Music Distribution</h3>
+                    <p data-i18n="service1Desc">Get your music on all major streaming platforms worldwide.</p>
+                </div>
+                <div class="card fade-in">
+                    <h3 data-i18n="service2Title">Copyright Management</h3>
+                    <p data-i18n="service2Desc">We protect your creative work and manage your intellectual property.</p>
+                </div>
+                <div class="card fade-in">
+                    <h3 data-i18n="service3Title">Artist Support</h3>
+                    <p data-i18n="service3Desc">Personalized support to help you grow your career in the industry.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artists Section -->
+    <section id="artists">
+        <div class="container">
+            <h2 class="section-title" data-i18n="artistsTitle">Artists We Work With</h2>
+            <div class="grid">
+                <!-- Mustapha Zyan -->
+                <div class="card artist-card fade-in">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0" title="Mustapha Zyan" allowfullscreen></iframe>
+                    </div>
+                    <h3 style="margin-bottom: 0.5rem;">Mustapha Zyan</h3>
+                    <div class="artist-label" data-i18n="managedBy">Managed by Zahraoui Prod</div>
+                </div>
+
+                <!-- Kader El Berkani -->
+                <div class="card artist-card fade-in">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0" title="Kader El Berkani" allowfullscreen></iframe>
+                    </div>
+                    <h3 style="margin-bottom: 0.5rem;">Kader El Berkani</h3>
+                    <div class="artist-label" data-i18n="managedBy">Managed by Zahraoui Prod</div>
+                </div>
+
+                <!-- Hakim Qaisar -->
+                <div class="card artist-card fade-in">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0" title="Hakim Qaisar" allowfullscreen></iframe>
+                    </div>
+                    <h3 style="margin-bottom: 0.5rem;">Hakim Qaisar</h3>
+                    <div class="artist-label" data-i18n="managedBy">Managed by Zahraoui Prod</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works">
+        <div class="container">
+            <h2 class="section-title" data-i18n="howItWorksTitle">How It Works</h2>
+            <div class="steps">
+                <div class="step fade-in">
+                    <div class="step-number">01</div>
+                    <div>
+                        <p data-i18n="step1">Submit your music for review</p>
+                    </div>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">02</div>
+                    <div>
+                        <p data-i18n="step2">Official agreement signing</p>
+                    </div>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">03</div>
+                    <div>
+                        <p data-i18n="step3">Distribution to platforms</p>
+                    </div>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">04</div>
+                    <div>
+                        <p data-i18n="step4">Revenue and rights management</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal & Trust Section -->
+    <section id="legal">
+        <div class="container">
+            <h2 class="section-title" data-i18n="legalTitle">Legal & Trust</h2>
+            <div class="grid">
+                <div class="card fade-in">
+                    <h3 style="color: var(--accent-color); margin-bottom: 1rem;">✓</h3>
+                    <p data-i18n="legal1">Official agreements with artists</p>
+                </div>
+                <div class="card fade-in">
+                    <h3 style="color: var(--accent-color); margin-bottom: 1rem;">✓</h3>
+                    <p data-i18n="legal2">Rights remain owned by artists</p>
+                </div>
+                <div class="card fade-in">
+                    <h3 style="color: var(--accent-color); margin-bottom: 1rem;">✓</h3>
+                    <p data-i18n="legal3">We act as authorized representative</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title" data-i18n="contactTitle">Contact Us</h2>
+            <div class="contact-info">
+                <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">📧 Email</p>
+                <p style="margin-bottom: 2rem;">
+                    <a href="mailto:contact@zahraouiprod.com">contact@zahraouiprod.com</a>
+                </p>
+                
+                <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">📱 Instagram</p>
+                <p style="margin-bottom: 2rem;">
+                    <a href="https://instagram.com/zahraouiprod" target="_blank">@zahraouiprod</a>
+                </p>
+                
+                <div style="margin-top: 3rem;">
+                    <a href="mailto:contact@zahraouiprod.com" class="btn btn-primary" data-i18n="submitMusic">Submit Music</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p data-i18n="footer">© 2024 Zahraoui Prod. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

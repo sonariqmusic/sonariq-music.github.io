@@ -359,3 +359,46 @@ window.addEventListener('load', () => {
 
 // Initial page opacity
 document.body.style.opacity = '0.95';
+
+// =========================
+// ARTIST PROFILE SYSTEM
+// =========================
+
+function openArtist(id, spotifyId, name){
+
+// hide sections
+document.querySelectorAll('section').forEach(s => s.style.display = "none");
+
+// show profile container (create if needed)
+let profile = document.getElementById("artist-profile");
+
+if(!profile){
+profile = document.createElement("div");
+profile.id = "artist-profile";
+profile.className = "profile-box";
+document.body.appendChild(profile);
+}
+
+// fill content
+profile.innerHTML = `
+<button class="btn" onclick="closeArtist()">رجوع</button>
+
+<h2>${name}</h2>
+
+<iframe 
+src="https://open.spotify.com/embed/artist/${spotifyId}"
+width="100%" height="380"
+frameborder="0"
+allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+</iframe>
+`;
+
+// show
+profile.style.display = "block";
+window.scrollTo(0,0);
+}
+
+function closeArtist(){
+document.getElementById("artist-profile").style.display = "none";
+document.querySelectorAll('section').forEach(s => s.style.display = "block");
+}

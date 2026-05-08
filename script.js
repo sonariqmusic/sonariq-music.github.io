@@ -360,31 +360,37 @@ window.addEventListener('load', () => {
 // Initial page opacity
 document.body.style.opacity = '0.95';
 
+
+
+
+
 // =========================
-// ARTIST PROFILE SYSTEM
+// ARTIST / PLAYLIST SYSTEM
 // =========================
 
 function openArtist(type, spotifyId, name = "Spotify") {
 
     // hide all sections
-    document.querySelectorAll("section").forEach(section => {
+    document.querySelectorAll('section').forEach(section => {
         section.style.display = "none";
     });
 
+    // get profile box
     const profile = document.getElementById("artist-profile");
 
     let embedUrl = "";
 
-    // Artist Profile
+    // Artist
     if(type === "artist"){
         embedUrl = `https://open.spotify.com/embed/artist/${spotifyId}`;
     }
 
     // Playlist
-    else if(type === "playlist"){
+    if(type === "playlist"){
         embedUrl = `https://open.spotify.com/embed/playlist/${spotifyId}`;
     }
 
+    // fill content
     profile.innerHTML = `
 
         <button class="btn" onclick="closeArtist()">
@@ -396,7 +402,7 @@ function openArtist(type, spotifyId, name = "Spotify") {
         <iframe
             src="${embedUrl}"
             width="100%"
-            height="700"
+            height="600"
             frameborder="0"
             allowfullscreen=""
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
@@ -404,37 +410,37 @@ function openArtist(type, spotifyId, name = "Spotify") {
 
     `;
 
+    // show profile
     profile.style.display = "block";
 
+    // go top
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
 }
 
+// close
 function closeArtist(){
 
+    // hide profile
     const profile = document.getElementById("artist-profile");
 
     profile.style.display = "none";
 
     profile.innerHTML = "";
 
-    // show all sections again
-    document.querySelectorAll("section").forEach(section => {
+    // show website again
+    document.querySelectorAll('section').forEach(section => {
         section.style.display = "block";
     });
 
+    // return top
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
 }
-
-
-
-
-
 
 
 

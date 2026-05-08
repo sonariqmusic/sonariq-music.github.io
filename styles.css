@@ -1,1 +1,354 @@
-========================= */ /* MODERN PROFESSIONAL DESIGN */ /* ========================= */ :root { --primary: #FF6B35; --secondary: #004E89; --accent: #F7B801; --dark: #1a1a2e; --darker: #0f0f1e; --light: #ffffff; --text-light: #e0e0e0; --text-muted: #a0a0a0; --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1); } * { margin: 0; padding: 0; box-sizing: border-box; } html { scroll-behavior: smooth; } body { font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%); color: var(--text-light); overflow-x: hidden; line-height: 1.6; } /* ========================= */ /* ANIMATED BACKGROUND */ /* ========================= */ .bg-light { position: fixed; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255, 107, 53, 0.15) 0%, transparent 70%); filter: blur(100px); border-radius: 50%; top: -100px; right: -100px; z-index: -1; animation: float 15s ease-in-out infinite; } .bg-light2 { position: fixed; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0, 78, 137, 0.15) 0%, transparent 70%); filter: blur(100px); border-radius: 50%; bottom: -50px; left: -50px; z-index: -1; animation: float 20s ease-in-out infinite reverse; } @keyframes float { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(30px, 30px) scale(1.1); } } /* ========================= */ /* HEADER */ /* ========================= */ header { position: fixed; top: 0; right: 0; width: 100%; padding: 18px 6%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(15, 15, 30, 0.7); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 107, 53, 0.1); transition: var(--transition); } header.scrolled { padding: 12px 6%; background: rgba(15, 15, 30, 0.95); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); } .logo { font-size: 26px; font-weight: 900; background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 1px; text-decoration: none; transition: var(--transition); } .logo:hover { filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.5)); } nav { display: flex; gap: 8px; } nav a { color: var(--text-light); text-decoration: none; padding: 8px 16px; font-size: 14px; font-weight: 700; position: relative; transition: var(--transition); border-radius: 8px; } nav a::before { content: ''; position: absolute; bottom: 0; right: 0; width: 0; height: 2px; background: linear-gradient(90deg, var(--primary), var(--accent)); transition: var(--transition); } nav a:hover::before, nav a.active::before { width: 100%; } nav a:hover { color: var(--accent); background: rgba(255, 107, 53, 0.1); } /* ========================= */ /* HERO SECTION */ /* ========================= */ .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 120px 6% 80px; position: relative; overflow: hidden; } .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 30% 50%, rgba(255, 107, 53, 0.1) 0%, transparent 50%); pointer-events: none; } .hero-content { max-width: 900px; text-align: center; position: relative; z-index: 2; } .badge { display: inline-block; padding: 10px 24px; border-radius: 50px; border: 1px solid var(--primary); background: rgba(255, 107, 53, 0.1); color: var(--primary); font-size: 13px; font-weight: 700; margin-bottom: 30px; animation: slideDown 0.8s ease; } .hero h1 { font-size: clamp(42px, 8vw, 85px); font-weight: 900; line-height: 1.1; margin-bottom: 25px; animation: slideUp 0.8s ease 0.1s backwards; letter-spacing: -2px; } .hero h1 span { background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 50%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-size: 200% 200%; animation: gradientShift 3s ease infinite; } @keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } } .hero p { font-size: clamp(16px, 2vw, 18px); color: var(--text-muted); max-width: 700px; margin: 0 auto 45px; line-height: 1.8; animation: slideUp 0.8s ease 0.2s backwards; } .hero-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; animation: slideUp 0.8s ease 0.3s backwards; } .btn { padding: 14px 40px; border-radius: 12px; font-size: 15px; font-weight: 800; text-decoration: none; border: none; cursor: pointer; transition: var(--transition); position: relative; overflow: hidden; } .btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.2); transition: var(--transition); z-index: -1; } .btn:hover::before { left: 100%; } .btn-gold { background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%); color: var(--dark); box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3); } .btn-gold:hover { transform: translateY(-4px); box-shadow: 0 15px 40px rgba(255, 107, 53, 0.5); } .btn-dark { background: rgba(255, 255, 255, 0.05); border: 1.5px solid var(--primary); color: var(--accent); } .btn-dark:hover { background: rgba(255, 107, 53, 0.1); border-color: var(--accent); transform: translateY(-4px); } /* ========================= */ /* SECTIONS */ /* ========================= */ section { padding: 100px 6%; position: relative; } .section-title { font-size: clamp(32px, 5vw, 48px); font-weight: 900; text-align: center; margin-bottom: 15px; letter-spacing: -1px; } .section-title span { background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; } .section-sub { text-align: center; font-size: 17px; color: var(--text-muted); max-width: 700px; margin: 0 auto 60px; line-height: 1.8; } /* ========================= */ /* SERVICES CARDS */ /* ========================= */ .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 60px; } .card { background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(0, 78, 137, 0.05) 100%); border: 1px solid rgba(255, 107, 53, 0.2); padding: 40px; border-radius: 16px; position: relative; overflow: hidden; transition: var(--transition); cursor: pointer; } .card::before { content: ''; position: absolute; top: -50%; right: -50%; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%); opacity: 0; transition: var(--transition); } .card:hover::before { opacity: 1; top: -30%; right: -30%; } .card:hover { transform: translateY(-10px); border-color: var(--primary); background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(0, 78, 137, 0.08) 100%); box-shadow: 0 20px 50px rgba(255, 107, 53, 0.15); } .card h3 { font-size: 22px; margin-bottom: 15px; color: var(--accent); font-weight: 800; position: relative; z-index: 2; } .card p { font-size: 15px; color: var(--text-muted); line-height: 1.8; position: relative; z-index: 2; } /* ========================= */ /* ARTISTS SECTION */ /* ========================= */ .artists-container { margin-top: 60px; } .artists-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; margin-bottom: 50px; } .artist-card { position: relative; aspect-ratio: 1/1; overflow: hidden; border-radius: 16px; border: 1px solid rgba(255, 107, 53, 0.2); transition: var(--transition); cursor: pointer; background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(0, 78, 137, 0.1)); } .artist-card img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); } .artist-card:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: 0 20px 50px rgba(255, 107, 53, 0.2); } .artist-card:hover img { transform: scale(1.1) rotate(1deg); filter: brightness(0.8); } .artist-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15, 15, 30, 0.95) 0%, rgba(15, 15, 30, 0.5) 50%, transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: 25px; transition: var(--transition); } .artist-overlay h3 { font-size: 22px; margin-bottom: 8px; font-weight: 800; color: var(--light); } .artist-overlay p { font-size: 14px; color: var(--accent); font-weight: 700; } .artist-card.hidden { display: none; } /* ========================= */ /* LOAD MORE BUTTON */ /* ========================= */ .load-more-container { text-align: center; margin-top: 50px; } .btn-load-more { padding: 14px 50px; border-radius: 12px; font-size: 15px; font-weight: 800; border: 1.5px solid var(--accent); background: rgba(247, 184, 1, 0.1); color: var(--accent); cursor: pointer; transition: var(--transition); position: relative; overflow: hidden; } .btn-load-more::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent); transition: var(--transition); } .btn-load-more:hover::before { left: 100%; } .btn-load-more:hover { background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%); color: var(--dark); transform: translateY(-4px); box-shadow: 0 15px 40px rgba(255, 107, 53, 0.3); } .btn-load-more.hidden { display: none; } /* ========================= */ /* STATS SECTION */ /* ========================= */ .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; margin-top: 60px; } .stat { padding: 40px 25px; border-radius: 16px; background: linear-gradient(135deg, rgba(255, 107, 53, 0.08) 0%, rgba(0, 78, 137, 0.08) 100%); border: 1px solid rgba(255, 107, 53, 0.15); text-align: center; transition: var(--transition); position: relative; overflow: hidden; } .stat::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); transform: scaleX(0); transform-origin: right; transition: var(--transition); } .stat:hover::before { transform: scaleX(1); transform-origin: left; } .stat:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 20px 50px rgba(255, 107, 53, 0.15); } .stat h2 { font-size: 42px; color: var(--accent); margin-bottom: 10px; font-weight: 900; } .stat p { font-size: 15px; color: var(--text-muted); font-weight: 600; } /* ========================= */ /* CONTACT SECTION */ /* ========================= */ .contact-box { padding: 60px 40px; border-radius: 20px; background: linear-gradient(135deg, rgba(255, 107, 53, 0.08) 0%, rgba(0, 78, 137, 0.08) 100%); border: 1px solid rgba(255, 107, 53, 0.2); text-align: center; position: relative; overflow: hidden; } .contact-box::before { content: ''; position: absolute; top: -50%; right: -50%; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%); pointer-events: none; } .contact-box h2 { font-size: 38px; margin-bottom: 15px; font-weight: 900; position: relative; z-index: 2; } .contact-box p { font-size: 16px; color: var(--text-muted); max-width: 600px; margin: 0 auto 40px; line-height: 1.8; position: relative; z-index: 2; } .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; position: relative; z-index: 2; } .contact-links a { padding: 12px 28px; border-radius: 12px; background: rgba(255, 107, 53, 0.1); border: 1.5px solid var(--primary); font-weight: 700; transition: var(--transition); text-decoration: none; color: var(--accent); font-size: 14px; } .contact-links a:hover { transform: translateY(-4px); background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: var(--dark); box-shadow: 0 15px 40px rgba(255, 107, 53, 0.3); } /* ========================= */ /* FOOTER */ /* ========================= */ footer { padding: 40px 6%; text-align: center; color: var(--text-muted); font-size: 14px; border-top: 1px solid rgba(255, 107, 53, 0.1); background: rgba(15, 15, 30, 0.5); } /* ========================= */ /* ANIMATIONS */ /* ========================= */ @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } } @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } } @keyframes slideIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } } .artist-card { animation: slideIn 0.5s ease-out; } /* ========================= */ /* RESPONSIVE DESIGN */ /* ========================= */ @media (max-width: 1024px) { .artists-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); } } @media (max-width: 768px) { header { padding: 14px 4%; } header.scrolled { padding: 10px 4%; } .logo { font-size: 22px; } nav { gap: 4px; } nav a { padding: 6px 12px; font-size: 12px; } section { padding: 80px 4%; } .hero { padding: 100px 4% 60px; } .hero h1 { font-size: 38px; } .hero p { font-size: 15px; } .hero-buttons { gap: 12px; } .btn { padding: 12px 30px; font-size: 14px; } .services { grid-template-columns: 1fr; gap: 20px; } .artists-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; } .stats { grid-template-columns: repeat(2, 1fr); gap: 15px; } .stat { padding: 30px 15px; } .stat h2 { font-size: 32px; } .contact-box { padding: 40px 25px; } .contact-box h2 { font-size: 28px; } .contact-links { gap: 10px; } .contact-links a { padding: 10px 20px; font-size: 13px; } } @media (max-width: 480px) { header { padding: 12px 3%; } .logo { font-size: 18px; } nav a { padding: 5px 8px; font-size: 11px; } section { padding: 60px 3%; } .hero { padding: 80px 3% 50px; } .hero h1 { font-size: 28px; } .hero p { font-size: 14px; } .badge { font-size: 11px; padding: 8px 16px; } .section-title { font-size: 26px; } .section-sub { font-size: 14px; } .card { padding: 25px; } .card h3 { font-size: 18px; } .card p { font-size: 14px; } .artists-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } .stats { grid-template-columns: 1fr; } .stat h2 { font-size: 28px; } .btn-load-more { padding: 12px 30px; font-size: 13px; } } /* ========================= */ /* ARTIST PROFILE BOX */ /* ========================= */ .profile-box{ padding:100px 6%; text-align:center; } .profile-box h2{ color:#F7B801; font-size:32px; margin-bottom:20px; } .profile-box iframe{ width: 100%; height: 600px; border-radius: 15px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); border: none; } .related-artists { padding: 60px 6%; } .related-artists h2 { text-align: center; margin-bottom: 30px; font-size: 28px; color: #F7B801; } .related-artists .artists-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; } .related-artists { padding: 60px 6%; text-align: center; } .related-artists h2 { color: #F7B801; margin-bottom: 30px; font-size: 28px; } /* هنا السر ديال التوسيط */ .artists-center { display: flex; justify-content: center; align-items: center; gap: 25px; flex-wrap: wrap; }
+/* ============================================================
+   1. VARIABLES & CORE SETTINGS
+   ============================================================ */
+:root {
+    --primary: #FF6B35;
+    --secondary: #004E89;
+    --accent: #F7B801;
+    --dark: #1a1a2e;
+    --darker: #0f0f1e;
+    --light: #ffffff;
+    --text-light: #e0e0e0;
+    --text-muted: #a0a0a0;
+    --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+    color: var(--text-light);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* ============================================================
+   2. ANIMATED BACKGROUND ELEMENTS
+   ============================================================ */
+.bg-light, .bg-light2 {
+    position: fixed;
+    filter: blur(100px);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.bg-light {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 107, 53, 0.15) 0%, transparent 70%);
+    top: -100px;
+    right: -100px;
+    animation: float 15s ease-in-out infinite;
+}
+
+.bg-light2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0, 78, 137, 0.15) 0%, transparent 70%);
+    bottom: -50px;
+    left: -50px;
+    animation: float 20s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(30px, 30px) scale(1.1); }
+}
+
+/* ============================================================
+   3. HEADER & NAVIGATION
+   ============================================================ */
+header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    padding: 18px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(15, 15, 30, 0.7);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+    transition: var(--transition);
+}
+
+header.scrolled {
+    padding: 12px 6%;
+    background: rgba(15, 15, 30, 0.95);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+nav {
+    display: flex;
+    gap: 8px;
+}
+
+nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 700;
+    position: relative;
+    transition: var(--transition);
+    border-radius: 8px;
+}
+
+nav a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transition: var(--transition);
+}
+
+nav a:hover::before, nav a.active::before { width: 100%; }
+nav a:hover { color: var(--accent); background: rgba(255, 107, 53, 0.1); }
+
+/* ============================================================
+   4. HERO SECTION
+   ============================================================ */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 6% 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 900px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.badge {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 50px;
+    border: 1px solid var(--primary);
+    background: rgba(255, 107, 53, 0.1);
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    animation: slideDown 0.8s ease;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 8vw, 85px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 25px;
+    animation: slideUp 0.8s ease 0.1s backwards;
+}
+
+.hero h1 span {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 50%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+}
+
+/* ============================================================
+   5. BUTTONS & COMPONENTS
+   ============================================================ */
+.btn {
+    padding: 14px 40px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 800;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.btn-gold {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+    color: var(--dark);
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+}
+
+.btn-dark {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1.5px solid var(--primary);
+    color: var(--accent);
+}
+
+.btn:hover { transform: translateY(-4px); }
+
+/* ============================================================
+   6. SERVICES & CARDS
+   ============================================================ */
+.services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.card {
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(0, 78, 137, 0.05) 100%);
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    padding: 40px;
+    border-radius: 16px;
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(0, 78, 137, 0.08) 100%);
+}
+
+/* ============================================================
+   7. ARTISTS GRID
+   ============================================================ */
+.artists-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.artist-card {
+    position: relative;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    transition: var(--transition);
+    animation: slideIn 0.5s ease-out;
+}
+
+.artist-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.artist-card:hover img { transform: scale(1.1) rotate(1deg); filter: brightness(0.8); }
+
+.artist-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15, 15, 30, 0.95) 0%, rgba(15, 15, 30, 0.5) 50%, transparent);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 25px;
+}
+
+/* ============================================================
+   8. STATS & CONTACT
+   ============================================================ */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+}
+
+.stat {
+    padding: 40px 25px;
+    border-radius: 16px;
+    background: rgba(255, 107, 53, 0.08);
+    border: 1px solid rgba(255, 107, 53, 0.15);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.contact-box {
+    padding: 60px 40px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.08) 0%, rgba(0, 78, 137, 0.08) 100%);
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    text-align: center;
+}
+
+/* ============================================================
+   9. PROFILE & RELATED SECTIONS
+   ============================================================ */
+.profile-box {
+    padding: 100px 6%;
+    text-align: center;
+}
+
+.profile-box h2 { color: var(--accent); font-size: 32px; margin-bottom: 20px; }
+
+.profile-box iframe {
+    width: 100%;
+    height: 600px;
+    border-radius: 15px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    border: none;
+}
+
+.related-artists { padding: 60px 6%; text-align: center; }
+.related-artists h2 { color: var(--accent); margin-bottom: 30px; font-size: 28px; }
+
+.artists-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+/* ============================================================
+   10. ANIMATIONS KEYFRAMES
+   ============================================================ */
+@keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+@keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+
+/* ============================================================
+   11. RESPONSIVE DESIGN (Media Queries)
+   ============================================================ */
+@media (max-width: 768px) {
+    header { padding: 14px 4%; }
+    .hero h1 { font-size: 38px; }
+    .services { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .artist-card { aspect-ratio: 1/1; }
+}
+
+@media (max-width: 480px) {
+    .hero h1 { font-size: 28px; }
+    .artists-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .stats { grid-template-columns: 1fr; }
+}

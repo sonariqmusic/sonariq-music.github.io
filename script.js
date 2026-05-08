@@ -359,19 +359,25 @@ window.addEventListener('load', () => {
 
 // Initial page opacity
 document.body.style.opacity = '0.95';
-
 // =========================
 // ARTIST PROFILE SYSTEM
 // =========================
 
-//
-// =========================
-// ARTIST PROFILE SYSTEM
-// =========================
-
-function openArtist(id, spotifyId, name) {
+function openArtist(type, spotifyId, name = "Spotify") {
 
     const profile = document.getElementById("artist-profile");
+
+    let embedUrl = "";
+
+    // Artist Profile
+    if(type === "artist"){
+        embedUrl = `https://open.spotify.com/embed/artist/${spotifyId}`;
+    }
+
+    // Playlist
+    else if(type === "playlist"){
+        embedUrl = `https://open.spotify.com/embed/playlist/${spotifyId}`;
+    }
 
     profile.innerHTML = `
 
@@ -383,9 +389,9 @@ function openArtist(id, spotifyId, name) {
 
         <iframe
             style="border-radius:12px; margin-top:20px;"
-            src="https://open.spotify.com/embed/artist/${spotifyId}"
+            src="${embedUrl}"
             width="100%"
-            height="380"
+            height="600"
             frameBorder="0"
             allowfullscreen=""
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
@@ -410,46 +416,4 @@ function closeArtist() {
     profile.innerHTML = "";
 }
 
-// hide sections
-document.querySelectorAll('section').forEach(s => s.style.display = "none");
 
-// show profile container (create if needed)
-let profile = document.getElementById("artist-profile");
-
-if(!profile){
-profile = document.createElement("div");
-profile.id = "artist-profile";
-profile.className = "profile-box";
-document.body.appendChild(profile);
-}
-
-// fill content
-profile.innerHTML = `
-<button class="btn" onclick="closeArtist()">رجوع</button>
-
-<h2>${name}</h2>
-
-<iframe 
-src="https://open.spotify.com/embed/artist/${spotifyId}"
-width="100%" height="380"
-frameborder="0"
-allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-</iframe>
-`;
-
-// show
-profile.style.display = "block";
-window.scrollTo(0,0);
-}
-
-function closeArtist(){
-document.getElementById("artist-profile").style.display = "none";
-document.querySelectorAll('section').forEach(s => s.style.display = "block");
-}
-
-function openPlaylist(playlistId) {
-    window.open(
-        `https://open.spotify.com/playlist/${playlistId}`,
-        "_blank"
-    );
-}

@@ -406,23 +406,6 @@ function openArtist(type, spotifyId, name = "Artist") {
 }
 
 
-// =========================
-// CLOSE SYSTEM
-// =========================
-function closeArtist(){
-
-    const profile = document.getElementById("artist-profile");
-
-    profile.style.display = "none";
-    profile.innerHTML = "";
-
-    // 🔵 show website again
-    document.querySelectorAll('section').forEach(section => {
-        section.style.display = "block";
-    });
-
-    window.scrollTo({ top: 0, behavior: "smooth" });
-}
 
 
 

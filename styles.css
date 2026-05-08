@@ -862,3 +862,21 @@ margin-bottom:20px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.5);
     border: none;
 }
+    .related-artists {
+    padding: 60px 6%;
+}
+
+.related-artists h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #F7B801;
+}
+
+.related-artists .artists-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+

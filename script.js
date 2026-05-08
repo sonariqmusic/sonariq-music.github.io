@@ -359,11 +359,17 @@ window.addEventListener('load', () => {
 
 // Initial page opacity
 document.body.style.opacity = '0.95';
+
 // =========================
 // ARTIST PROFILE SYSTEM
 // =========================
 
 function openArtist(type, spotifyId, name = "Spotify") {
+
+    // hide all sections
+    document.querySelectorAll("section").forEach(section => {
+        section.style.display = "none";
+    });
 
     const profile = document.getElementById("artist-profile");
 
@@ -388,11 +394,10 @@ function openArtist(type, spotifyId, name = "Spotify") {
         <h2>${name}</h2>
 
         <iframe
-            style="border-radius:12px; margin-top:20px;"
             src="${embedUrl}"
             width="100%"
-            height="600"
-            frameBorder="0"
+            height="700"
+            frameborder="0"
             allowfullscreen=""
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
         </iframe>
@@ -402,18 +407,41 @@ function openArtist(type, spotifyId, name = "Spotify") {
     profile.style.display = "block";
 
     window.scrollTo({
-        top: profile.offsetTop - 100,
+        top: 0,
         behavior: "smooth"
     });
 }
 
-function closeArtist() {
+function closeArtist(){
 
     const profile = document.getElementById("artist-profile");
 
     profile.style.display = "none";
 
     profile.innerHTML = "";
+
+    // show all sections again
+    document.querySelectorAll("section").forEach(section => {
+        section.style.display = "block";
+    });
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

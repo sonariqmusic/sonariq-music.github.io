@@ -368,31 +368,26 @@ document.body.style.opacity = '0.95';
 // ARTIST / PLAYLIST SYSTEM
 // =========================
 
-function openArtist(type, spotifyId, name = "Spotify") {
+function openArtist(type, spotifyId, name = "Artist") {
 
-
-
-    // get profile box
     const profile = document.getElementById("artist-profile");
+
+    // 🔴 hide website sections
+    document.querySelectorAll('section').forEach(section => {
+        section.style.display = "none";
+    });
 
     let embedUrl = "";
 
-    // Artist
     if(type === "artist"){
         embedUrl = `https://open.spotify.com/embed/artist/${spotifyId}`;
-    }
-
-    // Playlist
-    if(type === "playlist"){
+    } 
+    else if(type === "playlist"){
         embedUrl = `https://open.spotify.com/embed/playlist/${spotifyId}`;
     }
 
-    // fill content
     profile.innerHTML = `
-
-        <button class="btn" onclick="closeArtist()">
-            رجوع
-        </button>
+        <button class="btn" onclick="closeArtist()">رجوع</button>
 
         <h2>${name}</h2>
 
@@ -401,44 +396,33 @@ function openArtist(type, spotifyId, name = "Spotify") {
             width="100%"
             height="600"
             frameborder="0"
-            allowfullscreen=""
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
         </iframe>
-
     `;
 
-    // show profile
     profile.style.display = "block";
 
-    // go top
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// close
+
+// =========================
+// CLOSE SYSTEM
+// =========================
 function closeArtist(){
 
-    // hide profile
     const profile = document.getElementById("artist-profile");
 
     profile.style.display = "none";
-
     profile.innerHTML = "";
 
-    // show website again
+    // 🔵 show website again
     document.querySelectorAll('section').forEach(section => {
         section.style.display = "block";
     });
 
-    // return top
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
 }
-
 
 
 

@@ -364,7 +364,51 @@ document.body.style.opacity = '0.95';
 // ARTIST PROFILE SYSTEM
 // =========================
 
-function openArtist(id, spotifyId, name){
+//
+// =========================
+// ARTIST PROFILE SYSTEM
+// =========================
+
+function openArtist(id, spotifyId, name) {
+
+    const profile = document.getElementById("artist-profile");
+
+    profile.innerHTML = `
+
+        <button class="btn" onclick="closeArtist()">
+            رجوع
+        </button>
+
+        <h2>${name}</h2>
+
+        <iframe
+            style="border-radius:12px; margin-top:20px;"
+            src="https://open.spotify.com/embed/artist/${spotifyId}"
+            width="100%"
+            height="380"
+            frameBorder="0"
+            allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+        </iframe>
+
+    `;
+
+    profile.style.display = "block";
+
+    window.scrollTo({
+        top: profile.offsetTop - 100,
+        behavior: "smooth"
+    });
+}
+
+function closeArtist() {
+
+    const profile = document.getElementById("artist-profile");
+
+    profile.style.display = "none";
+
+    profile.innerHTML = "";
+}
 
 // hide sections
 document.querySelectorAll('section').forEach(s => s.style.display = "none");

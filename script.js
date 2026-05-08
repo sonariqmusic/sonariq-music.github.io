@@ -1,417 +1,147 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // ========================= */
-    // 1. HEADER SCROLL EFFECT
-    // ========================= */
-    const header = document.querySelector('header');
-    let lastScrollY = 0;
-
-    window.addEventListener('scroll', () => {
-        const currentScrollY = window.scrollY;
-        
-        if (currentScrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-        
-        lastScrollY = currentScrollY;
-    });
-
-    // ========================= */
-    // 2. ACTIVE LINK ON SCROLL
-    // ========================= */
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('nav a');
-
-    const updateActiveLink = () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (pageYOffset >= sectionTop - 200) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').includes(current)) {
-                link.classList.add('active');
-            }
-        });
-    };
-
-    window.addEventListener('scroll', updateActiveLink);
-
-    // ========================= */
-    // 3. SMOOTH SCROLLING FOR NAVIGATION
-    // ========================= */
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            const targetId = link.getAttribute('href');
-            if (targetId.startsWith('#')) {
-                e.preventDefault();
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
-    });
-
-    // ========================= */
-    // 4. INTERSECTION OBSERVER FOR ANIMATIONS
-    // ========================= */
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }, index * 50);
-            }
-        });
-    }, observerOptions);
-
-    // Animate cards and stats
-    const animatedElements = document.querySelectorAll('.card, .artist-card:not(.hidden), .stat, .contact-box');
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-        observer.observe(el);
-    });
-
-    // ========================= */
-    // 5. LOAD MORE ARTISTS FUNCTIONALITY
-    // ========================= */
-    const loadMoreBtn = document.getElementById('load-more-btn');
-    const artistsGrid = document.getElementById('artists-grid');
-    let allArtistsVisible = false;
-
-    if (loadMoreBtn) {
-        loadMoreBtn.addEventListener('click', () => {
-            const hiddenArtists = document.querySelectorAll('.artist-card.hidden');
-            
-            if (!allArtistsVisible) {
-                // Show all hidden artists
-                hiddenArtists.forEach((artist, index) => {
-                    setTimeout(() => {
-                        artist.classList.remove('hidden');
-                        artist.style.animation = 'slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards';
-                        observer.observe(artist);
-                    }, index * 100);
-                });
-                
-                loadMoreBtn.textContent = 'إخفاء الفنانين';
-                loadMoreBtn.style.transform = 'scale(1.05)';
-                allArtistsVisible = true;
-            } else {
-                // Hide artists again
-                hiddenArtists.forEach((artist, index) => {
-                    setTimeout(() => {
-                        artist.classList.add('hidden');
-                    }, index * 100);
-                });
-                
-                loadMoreBtn.textContent = 'عرض المزيد من الفنانين';
-                loadMoreBtn.style.transform = 'scale(1)';
-                allArtistsVisible = false;
-            }
-        });
-
-        // Button hover effect
-        loadMoreBtn.addEventListener('mouseenter', () => {
-            if (!allArtistsVisible) {
-                loadMoreBtn.style.transform = 'translateY(-4px) scale(1.02)';
-            }
-        });
-
-        loadMoreBtn.addEventListener('mouseleave', () => {
-            if (!allArtistsVisible) {
-                loadMoreBtn.style.transform = 'scale(1)';
-            }
-        });
-    }
-
-    // ========================= */
-    // 6. SMOOTH SCROLL FOR BUTTONS
-    // ========================= */
-    const allButtons = document.querySelectorAll('.btn, .btn-load-more');
-    allButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            const href = button.getAttribute('href');
-            if (href && href.startsWith('#')) {
-                e.preventDefault();
-                const targetElement = document.querySelector(href);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
-    });
-
-    // ========================= */
-    // 7. PARALLAX EFFECT FOR BACKGROUND
-    // ========================= */
-    const bgLight = document.querySelector('.bg-light');
-    const bgLight2 = document.querySelector('.bg-light2');
-
-    window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
-        if (bgLight) {
-            bgLight.style.transform = `translateY(${scrollY * 0.4}px) scale(${1 + scrollY * 0.0001})`;
-        }
-        if (bgLight2) {
-            bgLight2.style.transform = `translateY(${scrollY * 0.3}px) scale(${1 + scrollY * 0.00005})`;
-        }
-    });
-
-    // ========================= */
-    // 8. CONTACT FORM INTERACTIONS
-    // ========================= */
-    const contactLinks = document.querySelectorAll('.contact-links a');
-    contactLinks.forEach((link, index) => {
-        link.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-4px) scale(1.05)';
-            contactLinks.forEach((otherLink, otherIndex) => {
-                if (otherIndex !== index) {
-                    otherLink.style.opacity = '0.6';
-                }
-            });
-        });
-        
-        link.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-            contactLinks.forEach((otherLink) => {
-                otherLink.style.opacity = '1';
-            });
-        });
-    });
-
-    // ========================= */
-    // 9. CARD HOVER EFFECTS
-    // ========================= */
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            cards.forEach(c => {
-                if (c !== this) {
-                    c.style.opacity = '0.7';
-                }
-            });
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            cards.forEach(c => {
-                c.style.opacity = '1';
-            });
-        });
-    });
-
-    // ========================= */
-    // 10. ARTIST CARD HOVER EFFECT
-    // ========================= */
-    const artistCards = document.querySelectorAll('.artist-card');
-    artistCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-8px)';
-        });
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-        });
-    });
-
-    // ========================= */
-    // 11. STAT COUNTER ANIMATION
-    // ========================= */
-    const stats = document.querySelectorAll('.stat h2');
-    let hasAnimated = false;
-
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !hasAnimated) {
-                hasAnimated = true;
-                stats.forEach((stat, index) => {
-                    setTimeout(() => {
-                        stat.style.animation = 'slideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-                    }, index * 100);
-                });
-            }
-        });
-    }, { threshold: 0.5 });
-
-    const statsSection = document.getElementById('stats');
-    if (statsSection) {
-        statsObserver.observe(statsSection);
-    }
-
-    // ========================= */
-    // 12. MOUSE MOVE EFFECT ON HERO
-    // ========================= */
-    const heroSection = document.querySelector('.hero');
-    if (heroSection) {
-        heroSection.addEventListener('mousemove', (e) => {
-            const bgLight = document.querySelector('.bg-light');
-            if (bgLight) {
-                const x = (e.clientX / window.innerWidth) * 20;
-                const y = (e.clientY / window.innerHeight) * 20;
-                bgLight.style.transform = `translate(${x}px, ${y}px)`;
-            }
-        });
-
-        heroSection.addEventListener('mouseleave', () => {
-            const bgLight = document.querySelector('.bg-light');
-            if (bgLight) {
-                bgLight.style.transform = 'translate(0, 0)';
-            }
-        });
-    }
-
-    // ========================= */
-    // 13. KEYBOARD NAVIGATION
-    // ========================= */
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            // Close any open modals if needed
-        }
-        
-        // Arrow key navigation
-        if (e.key === 'ArrowDown') {
-            window.scrollBy({ top: 100, behavior: 'smooth' });
-        } else if (e.key === 'ArrowUp') {
-            window.scrollBy({ top: -100, behavior: 'smooth' });
-        }
-    });
-
-    // ========================= */
-    // 14. RIPPLE EFFECT ON BUTTONS
-    // ========================= */
-    const buttons = document.querySelectorAll('.btn, .btn-load-more, .contact-links a');
-    buttons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            const ripple = document.createElement('span');
-            const rect = this.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-
-            ripple.style.width = ripple.style.height = size + 'px';
-            ripple.style.left = x + 'px';
-            ripple.style.top = y + 'px';
-            ripple.classList.add('ripple');
-
-            // Remove previous ripple
-            const previousRipple = this.querySelector('.ripple');
-            if (previousRipple) {
-                previousRipple.remove();
-            }
-
-            this.appendChild(ripple);
-        });
-    });
-
-    // ========================= */
-    // 15. SCROLL TO TOP BUTTON (Optional)
-    // ========================= */
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 500) {
-            // You can add a scroll-to-top button here if needed
-        }
-    });
-
-    // ========================= */
-    // 16. PERFORMANCE: Lazy load images
-    // ========================= */
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src || img.src;
-                    img.classList.add('loaded');
-                    observer.unobserve(img);
-                }
-            });
-        });
-
-        document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
-    }
-});
-
-// ========================= */
-// UTILITY: Page load animation
-// ========================= */
-window.addEventListener('load', () => {
-    document.body.style.opacity = '1';
-});
-
-// Initial page opacity
-document.body.style.opacity = '0.95';
-
-
-
-
-
-// =========================
-// ARTIST / PLAYLIST SYSTEM
-// =========================
-
-function openArtist(type, spotifyId, name = "Artist") {
-
-    const profile = document.getElementById("artist-profile");
-
-    // 🔴 hide website sections
-    document.querySelectorAll('section').forEach(section => {
-        section.style.display = "none";
-    });
-
-    let embedUrl = "";
-
-    if(type === "artist"){
-        embedUrl = `https://open.spotify.com/embed/artist/${spotifyId}`;
-    } 
-    else if(type === "playlist"){
-        embedUrl = `https://open.spotify.com/embed/playlist/${spotifyId}`;
-    }
-
-    profile.innerHTML = `
-        <button class="btn" onclick="closeArtist()">رجوع</button>
-
-        <h2>${name}</h2>
-
-        <iframe
-            src="${embedUrl}"
-            width="100%"
-            height="600"
-            frameborder="0"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-        </iframe>
-    `;
-
-    profile.style.display = "block";
-
-    window.scrollTo({ top: 0, behavior: "smooth" });
+/* ============================================================
+   1. SETTINGS & VARIABLES (Alwan w Khotout)
+   ============================================================ */
+:root {
+    --primary: #FF6B35;    /* Orange */
+    --secondary: #004E89;  /* Blue */
+    --accent: #F7B801;     /* Gold */
+    --dark: #1a1a2e;
+    --darker: #0f0f1e;
+    --light: #ffffff;
+    --text-light: #e0e0e0;
+    --text-muted: #a0a0a0;
+    --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+html {
+    scroll-behavior: smooth;
+}
 
+body {
+    font-family: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+    color: var(--text-light);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
 
+/* ============================================================
+   2. SHARED COMPONENTS (Header, Footer, Background)
+   ============================================================ */
+/* Animated BG */
+.bg-light, .bg-light2 {
+    position: fixed;
+    filter: blur(100px);
+    border-radius: 50%;
+    z-index: -1;
+}
+.bg-light { width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,107,53,0.15) 0%, transparent 70%); top: -100px; right: -100px; animation: float 15s ease-in-out infinite; }
+.bg-light2 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(0,78,137,0.15) 0%, transparent 70%); bottom: -50px; left: -50px; animation: float 20s ease-in-out infinite reverse; }
 
+@keyframes float { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(30px,30px) scale(1.1); } }
 
+/* Navigation */
+header {
+    position: fixed;
+    top: 0; width: 100%; padding: 18px 6%;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 1000; background: rgba(15,15,30,0.7); backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,107,53,0.1); transition: var(--transition);
+}
+header.scrolled { padding: 12px 6%; background: rgba(15,15,30,0.95); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
 
+.logo {
+    font-size: 26px; font-weight: 900; text-decoration: none;
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
 
+nav { display: flex; gap: 8px; }
+nav a {
+    color: var(--text-light); text-decoration: none; padding: 8px 16px;
+    font-size: 14px; font-weight: 700; transition: var(--transition); border-radius: 8px;
+}
+nav a:hover, nav a.active { color: var(--accent); background: rgba(255,107,53,0.1); }
 
+footer {
+    padding: 40px 6%; text-align: center; color: var(--text-muted);
+    font-size: 14px; border-top: 1px solid rgba(255,107,53,0.1);
+}
 
+/* ============================================================
+   3. INDEX PAGE SPECIFIC (Hero, Services, Stats)
+   ============================================================ */
+.hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 6% 80px; }
+.hero h1 { font-size: clamp(40px, 8vw, 80px); font-weight: 900; margin-bottom: 20px; letter-spacing: -2px; }
+.hero h1 span { background: linear-gradient(135deg, var(--accent), var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
+.btn {
+    padding: 14px 40px; border-radius: 12px; font-weight: 800; text-decoration: none;
+    display: inline-block; transition: var(--transition); cursor: pointer; border: none;
+}
+.btn-gold { background: linear-gradient(135deg, var(--accent), var(--primary)); color: var(--dark); box-shadow: 0 10px 30px rgba(255,107,53,0.3); }
+.btn-gold:hover { transform: translateY(-4px); box-shadow: 0 15px 40px rgba(255,107,53,0.5); }
+
+/* Cards & Stats */
+.services, .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 50px; }
+.card, .stat {
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,107,53,0.1);
+    padding: 40px; border-radius: 16px; transition: var(--transition);
+}
+.card:hover, .stat:hover { transform: translateY(-10px); border-color: var(--primary); background: rgba(255,107,53,0.05); }
+
+/* Artist Grid (Common for Index & Related) */
+.artists-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+.artist-card { 
+    position: relative; aspect-ratio: 1/1; overflow: hidden; border-radius: 15px; 
+    border: 1px solid rgba(255,107,53,0.2); transition: var(--transition);
+}
+.artist-card img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+.artist-card:hover img { transform: scale(1.1); filter: brightness(0.7); }
+
+.artist-overlay {
+    position: absolute; inset: 0; display: flex; flex-direction: column; 
+    justify-content: flex-end; padding: 20px; background: linear-gradient(transparent, rgba(15,15,30,0.9));
+}
+
+/* ============================================================
+   4. ARTIST PROFILE PAGES (Mustapha Zyan, Kader Berkane, etc.)
+   ============================================================ */
+.profile-box { padding: 120px 6% 60px; text-align: center; }
+.profile-box h2 { color: var(--accent); font-size: clamp(28px, 5vw, 45px); margin-bottom: 30px; font-weight: 900; }
+
+.video-container {
+    max-width: 1000px; margin: 0 auto; position: relative;
+    border-radius: 20px; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,107,53,0.3);
+}
+.profile-box iframe { width: 100%; aspect-ratio: 16/9; border: none; display: block; }
+
+.related-artists { padding: 60px 6%; border-top: 1px solid rgba(255,107,53,0.1); }
+.related-artists h2 { text-align: center; color: var(--accent); margin-bottom: 40px; }
+
+/* Center helper for related artists if few items */
+.artists-center { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
+
+/* ============================================================
+   5. RESPONSIVE (Mobile Tweaks)
+   ============================================================ */
+@media (max-width: 768px) {
+    header { padding: 15px 4%; }
+    .hero h1 { font-size: 35px; }
+    .artists-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .profile-box { padding-top: 100px; }
+    .stats { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+    .logo { font-size: 20px; }
+    nav a { padding: 6px 10px; font-size: 12px; }
+    .artist-overlay h3 { font-size: 16px; }
+}

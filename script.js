@@ -370,10 +370,7 @@ document.body.style.opacity = '0.95';
 
 function openArtist(type, spotifyId, name = "Spotify") {
 
-    // hide all sections
-    document.querySelectorAll('section').forEach(section => {
-        section.style.display = "none";
-    });
+
 
     // get profile box
     const profile = document.getElementById("artist-profile");

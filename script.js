@@ -402,3 +402,10 @@ function closeArtist(){
 document.getElementById("artist-profile").style.display = "none";
 document.querySelectorAll('section').forEach(s => s.style.display = "block");
 }
+
+function openPlaylist(playlistId) {
+    window.open(
+        `https://open.spotify.com/playlist/${playlistId}`,
+        "_blank"
+    );
+}

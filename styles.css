@@ -879,4 +879,22 @@ margin-bottom:20px;
     gap: 20px;
 }
 
+.related-artists {
+    padding: 60px 6%;
+    text-align: center;
+}
 
+.related-artists h2 {
+    color: #F7B801;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+/* هنا السر ديال التوسيط */
+.artists-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
